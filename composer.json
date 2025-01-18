@@ -1,0 +1,16 @@
+{
+    "name": "mzeahmed/watcher",
+    "description": "Watch changes in files on wanted directories",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "Watcher\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mze Ahmed"
+        }
+    ],
+    "require": {}
+}
