@@ -12,58 +12,55 @@ class Watcher
     use Singleton;
 
     private ?File $file = null;
-    private string $wpYsPLuginDevPath;
-    private string $wpYsThemeDevPath;
 
     public function __construct()
     {
-        // $start = microtime(true);
-
         $this->file = new File();
-        $this->wpYsPLuginDevPath = APP_ABS_PATH . '/dev/plugins/wp-yoostart';
-        $this->wpYsThemeDevPath = APP_ABS_PATH . '/dev/themes/wp-yoostart-theme';
+
+        if (!defined('DIRECTORIES_TO_WATCH')) {
+            throw new \RuntimeException('DIRECTORIES_TO_WATCH constant is not defined.');
+        }
 
         $this->boot();
-
-        // dump('Execution time: ' . (microtime(true) - $start));
     }
 
     private function boot(): void
     {
-        $defaultDirectories = [
-            'vendor',
-            'node_modules',
-        ];
+        $directoriesToWatch = DIRECTORIES_TO_WATCH['paths'];
 
-        $exludePluginDirectories = [...$defaultDirectories, 'resources/i18n'];
+        foreach ($directoriesToWatch['plugins'] as $pluginConfig) {
+            $pluginFiles = $this->file->listFilesWithRecursiveIteratorIterator(
+                $pluginConfig['source'],
+                'php',
+                $pluginConfig['exclude']
+            );
 
-        $exludeThemeDirectories = [...$defaultDirectories, 'bin'];
+            $this->syncFiles($pluginFiles, $pluginConfig['destination'], $pluginConfig['source']);
+        }
 
-        $pluginFiles = $this->file
-            ->listFilesWithRecursiveIteratorIterator($this->wpYsPLuginDevPath, 'php', $exludePluginDirectories);
+        foreach ($directoriesToWatch['themes'] as $themeConfig) {
+            $themeFiles = $this->file->listFilesWithRecursiveIteratorIterator(
+                $themeConfig['source'],
+                'php',
+                $themeConfig['exclude']
+            );
 
-        $activePluginPath = WP_PLUGIN_DIR . '/wp-yoostart';
-        $this->syncFiles($pluginFiles, $activePluginPath);
-
-        $themeFiles = $this->file
-            ->listFilesWithRecursiveIteratorIterator($this->wpYsThemeDevPath, 'php', $exludeThemeDirectories);
-
-        $activeThemePath = get_theme_root() . '/wp-yoostart-theme';
-        $this->syncFiles($themeFiles, $activeThemePath);
+            $this->syncFiles($themeFiles, $themeConfig['destination'], $themeConfig['source']);
+        }
     }
 
-    private function syncFiles(array $sourceFiles, string $destinationPath): void
+    private function syncFiles(array $sourceFiles, string $destinationPath, string $sourcePath): void
     {
         foreach ($sourceFiles as $file) {
-            $relativePath = str_replace($this->wpYsPLuginDevPath, '', $file);
+            $relativePath = str_replace($sourcePath, '', $file);
             $destinationFile = $destinationPath . $relativePath;
 
-            // Create directory if it doesn't exist
+            // Crée le répertoire si nécessaire
             if (!file_exists(dirname($destinationFile))) {
                 mkdir(dirname($destinationFile), 0777, true);
             }
 
-            // Copy only if source is newer
+            // Copie uniquement si la source est plus récente
             if (!file_exists($destinationFile) || filemtime($file) > filemtime($destinationFile)) {
                 copy($file, $destinationFile);
             }
