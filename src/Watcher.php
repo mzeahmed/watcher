@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Watcher;
 
+use WPYoostart\File;
 use Watcher\Traits\Singleton;
-use WPYoostart\Helpers\YS_File;
 
 class Watcher
 {
     use Singleton;
 
-    private ?YS_File $file = null;
+    private ?File $file = null;
     private string $wpYsPLuginDevPath;
     private string $wpYsThemeDevPath;
 
@@ -19,7 +19,7 @@ class Watcher
     {
         // $start = microtime(true);
 
-        $this->file = new YS_File();
+        $this->file = new File();
         $this->wpYsPLuginDevPath = APP_ABS_PATH . '/dev/plugins/wp-yoostart';
         $this->wpYsThemeDevPath = APP_ABS_PATH . '/dev/themes/wp-yoostart-theme';
 
