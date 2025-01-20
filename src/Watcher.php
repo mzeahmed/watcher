@@ -31,7 +31,7 @@ class Watcher
         foreach ($directoriesToWatch['plugins'] as $pluginConfig) {
             $pluginFiles = $this->file->listFilesWithRecursiveIteratorIterator(
                 $pluginConfig['source'],
-                'php',
+                ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
                 $pluginConfig['exclude']
             );
 
@@ -41,7 +41,7 @@ class Watcher
         foreach ($directoriesToWatch['themes'] as $themeConfig) {
             $themeFiles = $this->file->listFilesWithRecursiveIteratorIterator(
                 $themeConfig['source'],
-                'php',
+                ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
                 $themeConfig['exclude']
             );
 
