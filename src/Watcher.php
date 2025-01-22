@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace Watcher;
 
-use WPYoostart\File;
 use Watcher\Traits\Singleton;
 
 class Watcher
 {
     use Singleton;
 
-    private ?File $file = null;
-
     public function __construct()
     {
-        $this->file = new File();
-
         if (!defined('DIRECTORIES_TO_WATCH')) {
             throw new \RuntimeException('DIRECTORIES_TO_WATCH constant is not defined.');
         }
@@ -26,10 +21,14 @@ class Watcher
 
     private function boot(): void
     {
+        /**
+         * The constant DIRECTORIES_TO_WATCH need to be defined in a config file, for example: wp-config.php
+         * or config/environment/development.php if bedrock is used.
+         */
         $directoriesToWatch = DIRECTORIES_TO_WATCH['paths'];
 
         foreach ($directoriesToWatch['plugins'] as $pluginConfig) {
-            $pluginFiles = $this->file->listFilesWithRecursiveIteratorIterator(
+            $pluginFiles = Utils::listFilesWithRecursiveIteratorIterator(
                 $pluginConfig['source'],
                 ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
                 $pluginConfig['exclude']
@@ -39,7 +38,7 @@ class Watcher
         }
 
         foreach ($directoriesToWatch['themes'] as $themeConfig) {
-            $themeFiles = $this->file->listFilesWithRecursiveIteratorIterator(
+            $themeFiles = Utils::listFilesWithRecursiveIteratorIterator(
                 $themeConfig['source'],
                 ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
                 $themeConfig['exclude']
@@ -55,12 +54,12 @@ class Watcher
             $relativePath = str_replace($sourcePath, '', $file);
             $destinationFile = $destinationPath . $relativePath;
 
-            // Crée le répertoire si nécessaire
+            // Create the destination directory if it does not exist
             if (!file_exists(dirname($destinationFile))) {
                 mkdir(dirname($destinationFile), 0777, true);
             }
 
-            // Copie uniquement si la source est plus récente
+            // Copy the file if it does not exist or if it is newer than the destination file
             if (!file_exists($destinationFile) || filemtime($file) > filemtime($destinationFile)) {
                 copy($file, $destinationFile);
             }

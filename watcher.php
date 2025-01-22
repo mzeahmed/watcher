@@ -6,15 +6,15 @@
  * @wordpress-plugin
  * Plugin Name:       Watcher
  * Description:       Watch changes in files on wanted directories.
- * Version:           1.0.3
+ * Version:           1.0.4
  * Author:            Ahmed Mze
  * Author URI:
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       watcher
- * Domain Path:       /resources/i18n
+ * Domain Path:       /i18n
  * Requires PHP:      8.3.0
- * Requires WP:       5.5.0
+ * Requires WP:       6.0.0
  * Namespace:         Watcher
  */
 
@@ -35,7 +35,7 @@ define('WATCHER_PLUGIN_URL', plugin_dir_url(__FILE__));
 require_once WATCHER_PLUGIN_PATH . 'vendor/autoload.php';
 
 if (!class_exists(\Watcher\Watcher::class)) {
-    \Watcher\ErrorHandler::pluginDie(__('Class Watcher does not exist', 'watcher'));
+    \Watcher\Utils::pluginDie(__('Class Watcher does not exist', 'watcher'));
 }
 
 function watcher(): ?Watcher

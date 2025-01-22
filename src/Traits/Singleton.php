@@ -20,9 +20,7 @@ trait Singleton
      * The constructor is private to enforce the use of the `getInstance()` method to obtain
      * the single instance of the class.
      */
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Prevents cloning of the instance.
@@ -31,9 +29,7 @@ trait Singleton
      *
      * @return void
      */
-    final public function __clone()
-    {
-    }
+    final public function __clone() {}
 
     /**
      * Prevents deserialization of the instance.
@@ -42,9 +38,7 @@ trait Singleton
      *
      * @return void
      */
-    final public function __wakeup()
-    {
-    }
+    final public function __wakeup() {}
 
     /**
      * Returns the single instance of the class.
