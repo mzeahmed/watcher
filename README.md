@@ -2,7 +2,8 @@
 
 ## Overview
 
-The Watcher plugin is designed to help developers monitor and synchronize files between development and deployment directories in a
+The Watcher plugin is designed to help developers monitor and synchronize files between development and the wordpress plugins and themes
+directories in a
 Bedrock or wordplate environment. Plugins and themes are installed via Composer, and if the local composer.json mirrors the production
 configuration, this plugin allows developers to work outside plugins and themes directories, ensuring changes are synchronized without
 directly
