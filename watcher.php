@@ -6,7 +6,7 @@
  * @wordpress-plugin
  * Plugin Name:       Watcher
  * Description:       Watch changes in files on wanted directories.
- * Version:           1.0.4.1
+ * Version:           1.0.4.2
  * Author:            Ahmed Mze
  * Author URI:
  * License:           GPL-2.0+

@@ -10,6 +10,8 @@ class Watcher
 {
     use Singleton;
 
+    private const array EXTENSIONS = ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'json'];
+
     public function __construct()
     {
         if (!defined('DIRECTORIES_TO_WATCH')) {
@@ -30,7 +32,7 @@ class Watcher
         foreach ($directoriesToWatch['plugins'] as $pluginConfig) {
             $pluginFiles = Utils::listFilesWithRecursiveIteratorIterator(
                 $pluginConfig['source'],
-                ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
+                self::EXTENSIONS,
                 $pluginConfig['exclude']
             );
 
@@ -40,7 +42,7 @@ class Watcher
         foreach ($directoriesToWatch['themes'] as $themeConfig) {
             $themeFiles = Utils::listFilesWithRecursiveIteratorIterator(
                 $themeConfig['source'],
-                ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
+                self::EXTENSIONS,
                 $themeConfig['exclude']
             );
 
