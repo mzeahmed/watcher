@@ -43,15 +43,27 @@ class WatcherAdmin
                 <div id="watcher-plugins">
                     <?php foreach ($directories['plugins'] as $index => $plugin) : ?>
                         <div>
-                            <input type="text" name="watcher_directories[plugins][<?= $index ?>][source]"
-                                   value="<?= esc_attr($plugin['source']) ?>" placeholder="Chemin source">
-                            <input type="text" name="watcher_directories[plugins][<?= $index ?>][destination]"
-                                   value="<?= esc_attr($plugin['destination']) ?>" placeholder="Chemin destination">
-                            <input type="text" name="watcher_directories[plugins][<?= $index ?>][exclude]"
-                                   value="<?= esc_attr(implode(
-                                       ',',
-                                       $plugin['exclude']
-                                   )) ?>" placeholder="Exclusions (séparées par une virgule)">
+                            <input
+                                    type="text"
+                                    name="watcher_directories[plugins][<?= $index ?>][source]"
+                                    value="<?= esc_attr($plugin['source']) ?>"
+                                    placeholder="Chemin source"
+                            >
+
+                            <input
+                                    type="text"
+                                    name="watcher_directories[plugins][<?= $index ?>][destination]"
+                                    value="<?= esc_attr($plugin['destination']) ?>"
+                                    placeholder="Chemin destination"
+                            >
+
+                            <input
+                                    type="text"
+                                    name="watcher_directories[plugins][<?= $index ?>][exclude]"
+                                    value="<?= esc_attr(implode(',', $plugin['exclude'])) ?>"
+                                    placeholder="Exclusions (séparées par une virgule)"
+                            >
+
                             <button type="button" class="remove-item">❌</button>
                         </div>
                     <?php endforeach; ?>
@@ -62,15 +74,27 @@ class WatcherAdmin
                 <div id="watcher-themes">
                     <?php foreach ($directories['themes'] as $index => $theme) : ?>
                         <div>
-                            <input type="text" name="watcher_directories[themes][<?= $index ?>][source]"
-                                   value="<?= esc_attr($theme['source']) ?>" placeholder="Chemin source">
-                            <input type="text" name="watcher_directories[themes][<?= $index ?>][destination]"
-                                   value="<?= esc_attr($theme['destination']) ?>" placeholder="Chemin destination">
-                            <input type="text" name="watcher_directories[themes][<?= $index ?>][exclude]"
-                                   value="<?= esc_attr(implode(
-                                       ',',
-                                       $theme['exclude']
-                                   )) ?>" placeholder="Exclusions (séparées par une virgule)">
+                            <input
+                                    type="text"
+                                    name="watcher_directories[themes][<?= $index ?>][source]"
+                                    value="<?= esc_attr($theme['source']) ?>"
+                                    placeholder="Chemin source"
+                            >
+
+                            <input
+                                    type="text"
+                                    name="watcher_directories[themes][<?= $index ?>][destination]"
+                                    value="<?= esc_attr($theme['destination']) ?>"
+                                    placeholder="Chemin destination"
+                            >
+
+                            <input
+                                    type="text"
+                                    name="watcher_directories[themes][<?= $index ?>][exclude]"
+                                    value="<?= esc_attr(implode(',', $theme['exclude'])) ?>"
+                                    placeholder="Exclusions (séparées par une virgule)"
+                            >
+
                             <button type="button" class="remove-item">❌</button>
                         </div>
                     <?php endforeach; ?>

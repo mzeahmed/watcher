@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Watcher;
 
 use Watcher\Traits\Singleton;
+use Watcher\Admin\WatcherAdmin;
 
 class Watcher
 {
@@ -12,10 +13,6 @@ class Watcher
 
     public function __construct()
     {
-        // if (!defined('DIRECTORIES_TO_WATCH')) {
-        //     throw new \RuntimeException('DIRECTORIES_TO_WATCH constant is not defined.');
-        // }
-
         $directoriesToWatch = $this->getDirectoriesToWatch();
 
         if (empty($directoriesToWatch)) {
@@ -23,6 +20,7 @@ class Watcher
         }
 
         $this->boot($directoriesToWatch);
+        new WatcherAdmin();
     }
 
     private function getDirectoriesToWatch(): array
@@ -38,32 +36,6 @@ class Watcher
 
     private function boot(array $directoriesToWatch): void
     {
-        /**
-         * The constant DIRECTORIES_TO_WATCH need to be defined in a config file, for example: wp-config.php
-         * or config/environment/development.php if bedrock is used.
-         */
-        // $directoriesToWatch = DIRECTORIES_TO_WATCH['paths'];
-        //
-        // foreach ($directoriesToWatch['plugins'] as $pluginConfig) {
-        //     $pluginFiles = Utils::listFilesWithRecursiveIteratorIterator(
-        //         $pluginConfig['source'],
-        //         ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
-        //         $pluginConfig['exclude']
-        //     );
-        //
-        //     $this->syncFiles($pluginFiles, $pluginConfig['destination'], $pluginConfig['source']);
-        // }
-        //
-        // foreach ($directoriesToWatch['themes'] as $themeConfig) {
-        //     $themeFiles = Utils::listFilesWithRecursiveIteratorIterator(
-        //         $themeConfig['source'],
-        //         ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
-        //         $themeConfig['exclude']
-        //     );
-        //
-        //     $this->syncFiles($themeFiles, $themeConfig['destination'], $themeConfig['source']);
-        // }
-
         foreach ($directoriesToWatch['plugins'] ?? [] as $pluginConfig) {
             $this->processSync($pluginConfig);
         }
@@ -80,7 +52,7 @@ class Watcher
             $destinationFile = $destinationPath . $relativePath;
 
             // Create the destination directory if it does not exist
-            if (!file_exists(dirname($destinationFile))) {
+            if (!file_exists(\dirname($destinationFile))) {
                 mkdir(dirname($destinationFile), 0777, true);
             }
 
