@@ -1,0 +1,24 @@
+{
+  "name": "watcher",
+  "version": "1.0.0",
+  "description": "The Watcher plugin is designed to help developers monitor and synchronize files between development and the WordPress plugins and themes\r directories in a Bedrock or WordPlate environment.",
+  "main": "resources/scripts/app.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "watch": "npm run type-check && wp-scripts start",
+    "build": "npm run type-check && wp-scripts build",
+    "format": "wp-scripts format",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/i18n": "^5.18.0",
+    "@wordpress/scripts": "^30.10.0",
+    "sass": "^1.84.0",
+    "sass-loader": "^16.0.4",
+    "ts-loader": "^9.5.1",
+    "typescript": "~5.4.0",
+    "typescript-eslint": "^7.18.0"
+  }
+}
