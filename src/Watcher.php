@@ -20,7 +20,10 @@ class Watcher
         }
 
         $this->boot($directoriesToWatch);
-        new WatcherAdmin();
+
+        if (is_admin()) {
+            new WatcherAdmin();
+        }
     }
 
     private function getDirectoriesToWatch(): array

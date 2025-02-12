@@ -1,16 +1,16 @@
 {
-    "name": "mzeahmed/watcher",
-    "description": "Watch changes in files on wanted directories",
-    "type": "wordpress-plugin",
-    "autoload": {
-        "psr-4": {
-            "Watcher\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Mze Ahmed"
-        }
-    ],
-    "require": {}
+  "name": "mzeahmed/watcher",
+  "description": "The Watcher plugin is designed to help developers monitor and synchronize files between development and the WordPress plugins and themes\r directories in a Bedrock or WordPlate environment.",
+  "type": "wordpress-plugin",
+  "autoload": {
+    "psr-4": {
+      "Watcher\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Mze Ahmed"
+    }
+  ],
+  "require": {}
 }
