@@ -6,7 +6,7 @@
  * @wordpress-plugin
  * Plugin Name:       Watcher
  * Description:       This plugin is designed to help developers monitor and synchronize files between development and the WP plugins and themes directories.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            Ahmed Mze
  * Author URI:
  * License:           GPL-2.0+

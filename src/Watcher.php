@@ -11,6 +11,8 @@ class Watcher
 {
     use Singleton;
 
+    private const array ALLOWED_EXTENSIONS = ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'mo', 'po', 'pot'];
+
     public function __construct()
     {
         $directoriesToWatch = $this->getDirectoriesToWatch();
@@ -78,7 +80,7 @@ class Watcher
 
         $files = Utils::listFilesWithRecursiveIteratorIterator(
             $source,
-            ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg'],
+            self::ALLOWED_EXTENSIONS,
             $exclude
         );
         $this->syncFiles($files, $destination, $source);
