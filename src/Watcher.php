@@ -11,7 +11,7 @@ class Watcher
 {
     use Singleton;
 
-    private const array ALLOWED_EXTENSIONS = [
+    private const ALLOWED_EXTENSIONS = [
         'php',
         'js',
         'ts',
