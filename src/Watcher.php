@@ -11,7 +11,22 @@ class Watcher
 {
     use Singleton;
 
-    private const array ALLOWED_EXTENSIONS = ['php', 'js', 'ts', 'css', 'scss', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'mo', 'po', 'pot'];
+    private const array ALLOWED_EXTENSIONS = [
+        'php',
+        'js',
+        'ts',
+        'css',
+        'scss',
+        'json',
+        'png',
+        'jpg',
+        'jpeg',
+        'gif',
+        'svg',
+        'mo',
+        'po',
+        'pot'
+    ];
 
     public function __construct()
     {
