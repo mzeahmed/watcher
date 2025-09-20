@@ -11,7 +11,7 @@ class Watcher
 {
     use Singleton;
 
-    private const ALLOWED_EXTENSIONS = [
+    private const array ALLOWED_EXTENSIONS = [
         'php',
         'js',
         'ts',
@@ -25,7 +25,11 @@ class Watcher
         'svg',
         'mo',
         'po',
-        'pot'
+        'pot',
+        'ttf',
+        'woff',
+        'woff2',
+        'eot',
     ];
 
     public function __construct()
