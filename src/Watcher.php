@@ -30,6 +30,8 @@ class Watcher
         'woff',
         'woff2',
         'eot',
+        'yml',
+        'yaml'
     ];
 
     public function __construct()
