@@ -7,16 +7,37 @@ namespace Composer\Autoload;
 class ComposerStaticInit10ca64e6f678b38d4796f81cefdc77f2
 {
     public static $prefixLengthsPsr4 = array (
-        'W' => 
+        'W' =>
         array (
             'Watcher\\' => 8,
+        ),
+        'D' =>
+        array (
+            'Database\\Seeders\\' => 17,
+            'Database\\Factories\\' => 19,
+        ),
+        'A' =>
+        array (
+            'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Watcher\\' => 
+        'Watcher\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Database\\Seeders\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/seeders',
+        ),
+        'Database\\Factories\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/factories',
+        ),
+        'App\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/app',
         ),
     );
 

@@ -12,5 +12,11 @@
       "name": "Mze Ahmed"
     }
   ],
-  "require": {}
+  "require-dev": {
+    "laravel/pint": "^1.29"
+  },
+  "scripts": {
+    "lint": "pint --test",
+    "lint:fix": "pint"
+  }
 }

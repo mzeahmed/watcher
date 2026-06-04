@@ -19,6 +19,7 @@ class Utils
      * @param array $excludeDirectories Directories to exclude from the listing.
      *
      * @return array|null List of files found in the directory.
+     *
      * @since 1.0.4
      */
     public static function listFilesWithRecursiveIteratorIterator(
@@ -97,7 +98,7 @@ class Utils
 
             $source = $source ? '<code>' .
                                 \sprintf(
-                                /* translators: %s: file path */
+                                    /* translators: %s: file path */
                                     __('Error source: %s', 'watcher'),
                                     $source
                                 ) . '</code><BR><BR>' : '';
