@@ -29,6 +29,10 @@ class Utils
     ): ?array {
         $files = [];
 
+        if (!is_dir($directory)) {
+            return $files;
+        }
+
         $iterator = new \RecursiveIteratorIterator(
             new \RecursiveCallbackFilterIterator(
                 new \RecursiveDirectoryIterator($directory, \FilesystemIterator::SKIP_DOTS),
